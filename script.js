@@ -1,3 +1,4 @@
+
 function CountLines(pFolder, re, aExtensions)
 {
     var ForReading = 1, ForWriting = 2, ForAppending = 8;
@@ -34,6 +35,15 @@ function CountLines(pFolder, re, aExtensions)
         msg += "\n  " + aExtensions[i] + ":  " + oExt[aExtensions[i]];
     WScript.Echo(msg);
 }
+
+
+function Factorial(Chislo)
+{
+	var TrueFactorial = 1;
+	for(var i = 2; i <= Chislo; i++)
+		TrueFactorial = TrueFactorial * i;
+	WScript.Echo(TrueFactorial);	
+}
  
  
 function SortFiles(pFolder)
@@ -44,7 +54,7 @@ function SortFiles(pFolder)
     
     for (oFiles = new Enumerator(oFolder.files); !oFiles.atEnd(); oFiles.moveNext())
         aFiles.push(oFiles.item().Name);
-          
+   
     pFilesList = "";
     for (var i = 0; i < aFiles.length; ++i)
         pFilesList += aFiles[i] + "\n";
@@ -52,16 +62,12 @@ function SortFiles(pFolder)
     WScript.Echo(pFilesList);
 }
  
-
- 
- 
-extensions = ["txt", "asm", "inf"];
- 
+  
 oArgs = WScript.Arguments;
  
 if (oArgs.length == 0)
 {
-    WScript.Echo("Using:\n  Zadanie 1 :\n  script.js 1 c:\\NamePapka SearchLine\n  2. Zadanie 2:\n  script.js 2 c:\\NamePapka")
+    WScript.Echo("Using:\n  Zadanie 1 :\n  script.js 1 c:\\NamePapka SearchLine\n  Zadanie 2:\n  script.js 2 c:\\NamePapka \n Factorial: \n script.js 3 !Factorial")
 }
  
 else if (oArgs(0) == "1")
@@ -78,4 +84,9 @@ else if (oArgs(0) == "2")
         SortFiles(".");
     else if (oArgs.length == 2)
         SortFiles(oArgs(1));
+}
+
+else if (oArgs(0) == "3")
+{
+    Factorial(oArgs(1));
 }
