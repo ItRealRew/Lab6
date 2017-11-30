@@ -36,7 +36,7 @@ function CountLines(pFolder, re, aExtensions)
 }
  
  
-function SortFiles(pFolder, sortFunction)
+function SortFiles(pFolder)
 {
     var fso = new ActiveXObject("Scripting.FileSystemObject");
     var oFolder = fso.GetFolder(pFolder);
@@ -44,9 +44,7 @@ function SortFiles(pFolder, sortFunction)
     
     for (oFiles = new Enumerator(oFolder.files); !oFiles.atEnd(); oFiles.moveNext())
         aFiles.push(oFiles.item().Name);
-    
-    if (sortFunction)
-        aFiles.sort(sortFunction);      
+          
     pFilesList = "";
     for (var i = 0; i < aFiles.length; ++i)
         pFilesList += aFiles[i] + "\n";
@@ -54,16 +52,7 @@ function SortFiles(pFolder, sortFunction)
     WScript.Echo(pFilesList);
 }
  
- 
-function SortBy3Char(str1, str2)
-{
-    if (str1.charAt(2) > str2.charAt(2))
-        return 1;
-    if (str1.charAt(2) < str2.charAt(2))
-        return -1;
-    return 0;
-}
- 
+
  
  
 extensions = ["txt", "asm", "inf"];
@@ -86,7 +75,7 @@ else if (oArgs(0) == "1")
 else if (oArgs(0) == "2")
 {
     if (oArgs.length == 1)
-        SortFiles(".", SortBy3Char);
+        SortFiles(".");
     else if (oArgs.length == 2)
-        SortFiles(oArgs(1), SortBy3Char);
+        SortFiles(oArgs(1));
 }
